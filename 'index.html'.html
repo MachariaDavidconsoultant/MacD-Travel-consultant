@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MacD Travel Consultant</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f6f9fc 0%, #e9eff5 100%);
+    color: #2e2e2e;
+    line-height: 1.6;
+  }
+
+  header {
+    background: #0a3d62;
+    color: #fff;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(10, 61, 98, 0.5);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+
+  nav ul li {
+    margin-left: 2rem;
+  }
+
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: #f8c04b;
+  }
+
+  section {
+    padding: 100px 2rem 60px;
+    scroll-margin-top: 70px;
+  }
+
+  .hero {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: rgba(10, 61, 98, 0.65);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 0 1rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(0,0,0,0.5);
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
+
+  .btn-primary {
+    background-color: #f8c04b;
+    color: #0a3d62;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(248,192,75,0.5);
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .btn-primary:hover {
+    background-color: #e1a91f;
+  }
+
+  .services {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(72, 84, 96, 0.1);
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: #f8f7f3;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(72, 84, 96, 0.1);
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(248,192,75,0.3);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    color: #f8c04b;
+    margin-bottom: 1rem;
+  }
+
+  .service-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: #0a3d62;
+  }
+
+  .service-desc {
+    font-weight: 300;
+    color: #555;
+  }
+
+  .job-listings {
+    text-align: left;
+    margin-top: 1rem;
+  }
+
+  .job {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .job h4 {
+    font-weight: 600;
+    color: #0a3d62;
+  }
+
+  .job p {
+    margin: 0.5rem 0;
+  }
+
+  .destinations {
+    max-width: 1200px;
+    margin: 3rem auto 5rem;
+    padding: 0 2rem;
+  }
+
+  .destinations h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #0a3d62;
+  }
+
+  .dest-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+
+  .dest-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(72, 84, 96, 0.15);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+
+  .dest-card:hover {
+    transform: scale(1.05);
+  }
+
+  .dest-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .dest-info {
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .dest-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0a3d62;
+  }
+
+  .dest-desc {
+    color: #666;
+    font-weight: 300;
+    margin-top: 0.5rem;
+  }
+
+  .testimonials {
+    background: #0a3d62;
+    color: #f8f7f3;
+    padding: 4rem 2rem 2rem;
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 3rem auto 4rem;
+    box-shadow: 0 10px 30px rgba(248,192,75,0.25);
+  }
+
+  .testimonials h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .testimonial-content {
+    text-align: center;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    min-height: 120px;
+  }
+
+  .testimonial-author {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .testimonial-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .testimonial-nav button {
+    background: #f8c04b;
+    border: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .testimonial-nav button.active,
+  .testimonial-nav button:hover {
+    opacity: 1;
+  }
+
+  .contact {
+    background: #fff;
+    max-width: 900px;
+    margin: 3rem auto 6rem;
+    padding: 3rem 2rem;
+    box-shadow: 0 12px 30px rgba(72, 84, 96, 0.15);
+    border-radius: 15px;
+  }
+
+  .contact h2 {
+    text-align: center;
+    color: #0a3d62;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact p.contact-number {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #0a3d62;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0a3d62;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    border-color: #f8c04b;
+    outline: none;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .btn-submit {
+    background-color: #0a3d62;
+    color: #f8c04b;
+    font-weight: 700;
+    border: none;
+    padding: 0.85rem 2.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(248,192,75,0.7);
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-submit:hover {
+    background-color: #093456;
+  }
+
+  footer {
+    background-color: #0a3d62;
+    color: #f8c04b;
+    text-align: center;
+    padding: 1rem 2rem;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+  }
+
+  .social-links {
+    margin: 0.5rem 0 1rem;
+  }
+
+  .social-links a {
+    color: #f8c04b;
+    text-decoration: none;
+    margin: 0 0.8rem;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+  }
+
+  .social-links a:hover {
+    color: #e1a91f;
+  }
+
+  /* Responsive */
+
+  @media (max-width: 768px) {
+    nav ul {
+      display: none;
+    }
+
+    nav .menu-toggle {
+      display: block;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    nav.active ul {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      right: 2rem;
+      background: #0a3d62;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      width: 180px;
+      box-shadow: 0 4px 15px rgba(10, 61, 98, 0.8);
+    }
+
+    nav.active ul li {
+      margin: 1.2rem 0;
+    }
+  }
+
+</style>
+</head>
+<body>
+  <header>
+    <nav class="container" id="navbar">
+      <div class="logo" tabindex="0">MacD Travel Consultant</div>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</div>
+      <ul>
+        <li><a href="#services" tabindex="0">Services</a></li>
+        <li><a href="#destinations" tabindex="0">Destinations</a></li>
+        <li><a href="#testimonials" tabindex="0">Testimonials</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" role="banner" aria-label="Hero Section">
+    <div class="hero-content">
+      <h1>Discover Your Next Dream Destination</h1>
+      <p>Exclusive travel experiences tailored just for you.</p>
+      <button class="btn-primary" id="btnExplore">Explore Now</button>
+    </div>
+  </section>
+
+  <section class="services container" id="services" aria-label="Our Services">
+    <div class="service-card" tabindex="0" aria-describedby="service1-desc">
+      <div class="service-icon" aria-hidden="true">🛫</div>
+      <h3 class="service-title">Flight Bookings</h3>
+      <p class="service-desc" id="service1-desc">Best prices and hassle-free flight reservations worldwide.</p>
+    </div>
+    <div class="service-card" tabindex="0" aria-describedby="service2-desc">
+      <div class="service-icon" aria-hidden="true">🏨</div>
+      <h3 class="service-title">Hotel Reservations</h3>
+      <p class="service-desc" id="service2-desc">Luxurious and comfortable stays tailored to your preferences.</p>
+    </div>
+    <div class="service-card" tabindex="0" aria-describedby="service3-desc">
+      <div class="service-icon" aria-hidden="true">🌐</div>
+      <h3 class="service-title">Custom Tours</h3>
+      <p class="service-desc" id="service3-desc">Personalized itineraries to explore hidden gems.</p>
+    </div>
+    <div class="service-card" tabindex="0" aria-describedby="service4-desc">
+      <div class="service-icon" aria-hidden="true">🚗</div>
+      <h3 class="service-title">Car Rentals</h3>
+      <p class="service-desc" id="service4-desc">Convenient and affordable car rentals worldwide.</p>
+    </div>
+    <div class="service-card" tabindex="0" aria-describedby="service5-desc">
+      <div class="service-icon" aria-hidden="true">🌍</div>
+      <h3 class="service-title">Jobs Abroad</h3>
+      <p class="service-desc" id="service5-desc">Assisting you in finding legitimate job opportunities overseas.</p>
+      <div class="job-listings">
+        <div class="job">
+          <h4>Construction Worker</h4>
+          <p><strong>Responsibilities:</strong> Measuring, cutting, and shaping materials such as wood, drywall, and rebar; performing tasks like excavation, leveling, and concrete mixing under guidance; and constructing scaffolding and other construction structures.</p>
+          <p><strong>Salary:</strong> 850 - 1200 EUR, gross</p>
+          <p><strong>Employer:</strong> P&Q Expert Kft</p>
+          <p><strong>Location:</strong> Budapest, Hungary</p>
+        </div>
+        <div class="job">
+          <h4>Caregiver</h4>
+          <p><strong>Responsibilities:</strong> Observing well-being, providing support during movement and transportation, organizing meals and feeding, and adhering to the doctor’s recommendations. Additional tasks include controlling medication intake and measuring basic health indicators.</p>
+          <p><strong>Salary:</strong> 1260 - 1810 EUR, gross</p>
+          <p><strong>Employer:</strong> AWM Spolka</p>
+          <p><strong>Location:</strong> Gdansk, Poland</p>
+        </div>
+        <div class="job">
+          <h4>Electrician</h4>
+          <p><strong>Responsibilities:</strong> Installation of cable routes, laying electrical cables and wires, installing electrical equipment, and connecting wires and cables in switchgear and current-bracing systems. Additional duties involve the installation of lightning protection and grounding systems.</p>
+          <p><strong>Salary:</strong> 1315 - 1895 EUR, gross</p>
+          <p><strong>Employer:</strong> LG Energy Solution</p>
+          <p><strong>Location:</strong> Wroclaw, Poland</p>
+        </div>
+        <div class="job">
+          <h4>Production Line Worker</h4>
+          <p><strong>Responsibilities:</strong> Receiving parts from suppliers, operating presses to shape metal sheets and components, fixing the engine and frame to the vehicle chassis, assembling parts using robotic welders and hand tools, and operating paint spraying machinery.</p>
+          <p><strong>Salary:</strong> 1260 - 1810 EUR, gross</p>
+          <p><strong>Employer:</strong> Plastic Omnium Auto Exteriors Spolka</p>
+          <p><strong>Location:</strong> Lodz, Poland</p>
+        </div>
+        <div class="job">
+          <h4>Warehouse Worker</h4>
+          <p><strong>Responsibilities:</strong
